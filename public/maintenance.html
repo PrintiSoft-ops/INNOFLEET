@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Maintenance - INNOFLEET</title>
+        <meta name="description" content="Gérez votre parc automobile : ajout, modification, suivi des véhicules.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://votre-domaine.com/vehicules.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+     <link rel="icon" href="data:">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="top-brand">
+        <img src="./image/logo.jpg" class="imagelogo">
+        <h1>INNOFLEET</h1>
+        <div class="logout-btn" onclick="logout()">
+            <i class="fas fa-user"></i> <span id="user-display"></span> <i class="fas fa-sign-out-alt"></i>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li onclick="window.location.href='index.html'"><i class="fas fa-home"></i> Accueil</li>
+                <li onclick="window.location.href='vehicules.html'"><i class="fas fa-car"></i> Véhicules</li>
+                <li onclick="window.location.href='maintenance.html'"><i class="fas fa-wrench"></i> Maintenance</li>
+                <li onclick="window.location.href='mission.html'"><i class="fas fa-briefcase"></i> Missions</li>
+                <li onclick="window.location.href='trajets.html'"><i class="fas fa-map-marked-alt"></i> Trajets</li>
+                <li onclick="window.location.href='carburant.html'"><i class="fas fa-gas-pump"></i> Carburant</li>
+                <li onclick="window.location.href='rapports.html'" class="admin-only"><i class="fas fa-chart-line"></i> Rapports</li>
+                <li onclick="window.location.href='administration.html'" class="admin-only"><i class="fas fa-users-cog"></i> Administration</li>
+            </ul>
+        </aside>
+
+       <main class="content">
+    <h2 style="font-weight: 300;">Maintenance</h2>
+    <div class="tabs">
+        <div class="tab active" data-tab="liste" onclick="switchTab(event, 'liste')">Liste des maintenances</div>
+        <div class="tab" data-tab="statistiques" onclick="switchTab(event, 'statistiques')">Statistiques</div>
+    </div>
+
+    <!-- Onglet Liste (formulaire + tableau) -->
+    <div id="tab-liste" class="tab-content active">
+        <div class="panel">
+            <div class="panel-header"><i class="fas fa-plus-circle"></i> Planifier une maintenance</div>
+            <div class="panel-body" id="maintenance-form">
+                <div style="display: grid; grid-template-columns: repeat(4,1fr); gap: 15px;">
+                    <div class="form-group">
+                        <label>Ordre de réparation :</label>
+                        <input type="text" class="form-control" id="maint-ordre" placeholder="ex: OR-2026-001">
+                    </div>
+                    <div class="form-group">
+                        <label>Véhicule :</label>
+                        <select class="form-control" id="maint-vehicule"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Type :</label>
+                        <select class="form-control" id="maint-type">
+                            <option value="Préventive">Préventive</option>
+                            <option value="Curative">Curative</option>
+                            <option value="Inspection">Inspection</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Composant :</label>
+                        <input type="text" class="form-control" id="maint-composant" placeholder="ex: Freins">
+                    </div>
+                    <div class="form-group">
+                        <label>Coût pièce (FCFA) :</label>
+                        <input type="number" class="form-control" id="maint-coutPiece" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Coût main d'œuvre (FCFA) :</label>
+                        <input type="number" class="form-control" id="maint-coutMain" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Date début :</label>
+                        <input type="date" class="form-control" id="maint-dateDebut">
+                    </div>
+                    <div class="form-group">
+                        <label>Date fin :</label>
+                        <input type="date" class="form-control" id="maint-dateFin">
+                    </div>
+                    <div class="form-group">
+                        <label>Statut :</label>
+                        <select class="form-control" id="maint-statut">
+                            <option value="Planifiée">Planifiée</option>
+                            <option value="En cours">En cours</option>
+                            <option value="Terminée">Terminée</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="saveMaintenance()" style="grid-column: span 4; justify-self: start;">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header"><i class="fas fa-history"></i> Historique des maintenances</div>
+            <div class="panel-body">
+                <div class="toolbar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchMaintenance" placeholder="Rechercher...">
+                    </div>
+                </div>
+                <table class="data-table" id="maintenance-table">
+                    <thead>
+                        <tr>
+                            <th>Ordre</th>
+                            <th>Véhicule</th>
+                            <th>Type</th>
+                            <th>Composant</th>
+                            <th>Coût pièce</th>
+                            <th>Coût main d'œuvre</th>
+                            <th>Date début</th>
+                            <th>Date fin</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Onglet Statistiques -->
+    <div id="tab-statistiques" class="tab-content panel">
+        <div class="panel-body">
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Répartition par type</h3>
+                    <div class="chart-container">
+                        <canvas id="chart-maintenance-type"></canvas>
+                    </div>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Statistiques clés</h3>
+                    <ul>
+                        <li><strong>Total maintenances :</strong> <span id="stat-total">0</span></li>
+                        <li><strong>Préventives :</strong> <span id="stat-preventive">0</span></li>
+                        <li><strong>Curatives :</strong> <span id="stat-curative">0</span></li>
+                        <li><strong>Inspections :</strong> <span id="stat-inspection">0</span></li>
+                        <li><strong>Coût total :</strong> <span id="stat-cout-total">0 DH</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+    </div>
+
+    <!-- Modal pour modifier -->
+    <div id="modal-maintenance" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Modifier la maintenance</h3>
+        <div class="form-group">
+            <label>Ordre de réparation</label>
+            <input type="text" id="edit-maint-ordre" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Véhicule</label>
+            <select id="edit-maint-vehicule" class="form-control"></select>
+        </div>
+        <div class="form-group">
+            <label>Type</label>
+            <select id="edit-maint-type" class="form-control">
+                <option value="Préventive">Préventive</option>
+                <option value="Curative">Curative</option>
+                <option value="Inspection">Inspection</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Composant</label>
+            <input type="text" id="edit-maint-composant" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Coût pièce (DH)</label>
+            <input type="number" id="edit-maint-coutPiece" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Coût main d'œuvre (DH)</label>
+            <input type="number" id="edit-maint-coutMain" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Date début</label>
+            <input type="date" id="edit-maint-dateDebut" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Date fin</label>
+            <input type="date" id="edit-maint-dateFin" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Statut</label>
+            <select id="edit-maint-statut" class="form-control">
+                <option value="Planifiée">Planifiée</option>
+                <option value="En cours">En cours</option>
+                <option value="Terminée">Terminée</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" onclick="updateMaintenance()">Mettre à jour</button>
+    </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="js/script.js" type="module"></script>
+    <script src="js/maintenance.js" type="module"></script>
+</body>
+</html> 

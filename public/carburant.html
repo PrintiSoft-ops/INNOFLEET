@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Carburant - INNOFLEET</title>
+        <meta name="description" content="Gérez votre parc automobile : ajout, modification, suivi des véhicules.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://votre-domaine.com/vehicules.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+     <link rel="icon" href="data:">
+</head>
+<body>
+    <header class="top-brand">
+        <img src="./image/logo.jpg" class="imagelogo">
+        <h1>INNOFLEET</h1>
+        <div class="logout-btn" onclick="logout()">
+            <i class="fas fa-user"></i> <span id="user-display"></span> <i class="fas fa-sign-out-alt"></i>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li onclick="window.location.href='index.html'"><i class="fas fa-home"></i> Accueil</li>
+                <li onclick="window.location.href='vehicules.html'"><i class="fas fa-car"></i> Véhicules</li>
+                <li onclick="window.location.href='maintenance.html'"><i class="fas fa-wrench"></i> Maintenance</li>
+                <li onclick="window.location.href='mission.html'"><i class="fas fa-briefcase"></i> Missions</li>
+                <li onclick="window.location.href='trajets.html'"><i class="fas fa-map-marked-alt"></i> Trajets</li>
+                <li onclick="window.location.href='carburant.html'"><i class="fas fa-gas-pump"></i> Carburant</li>
+                <li onclick="window.location.href='rapports.html'" class="admin-only"><i class="fas fa-chart-line"></i> Rapports</li>
+                <li onclick="window.location.href='administration.html'" class="admin-only"><i class="fas fa-users-cog"></i> Administration</li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <div class="panel">
+                <div class="panel-header"><i class="fas fa-plus-circle"></i> Ajouter un plein</div>
+                <div class="panel-body">
+                    <div class="filter-row">
+                        <div class="form-group">
+                            <label>Véhicule :</label>
+                            <select class="form-control" id="fuel-vehicule"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Date :</label>
+                            <input type="date" class="form-control" id="fuel-date">
+                        </div>
+                        <div class="form-group">
+                            <label>Litres :</label>
+                            <input type="number" class="form-control" id="fuel-litres">
+                        </div>
+                        <div class="form-group">
+                            <label>Montant (FCFA) :</label>
+                            <input type="number" class="form-control" id="fuel-montant">
+                        </div>
+                        <button class="btn btn-primary" onclick="addFuel()">Enregistrer</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header"><i class="fas fa-history"></i> Historique carburant</div>
+                <div class="panel-body">
+                    <div class="toolbar">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchCarburant" placeholder="Rechercher...">
+                        </div>
+                    </div>
+                    <table class="data-table" id="fuel-table">
+                        <thead>
+                            <tr>
+                                <th>Véhicule</th>
+                                <th>Date</th>
+                                <th>Litres</th>
+                                <th>Montant</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal pour modifier -->
+    <div id="modal-fuel" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Modifier le plein</h3>
+            <div class="form-group">
+                <label>Véhicule</label>
+                <select id="edit-fuel-vehicule" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" id="edit-fuel-date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Litres</label>
+                <input type="number" id="edit-fuel-litres" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Montant (DH)</label>
+                <input type="number" id="edit-fuel-montant" class="form-control">
+            </div>
+            <button class="btn btn-primary" onclick="updateFuel()">Mettre à jour</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="js/script.js" type="module"></script>
+    <script src="js/carburant.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rapports - INNOFLEET</title>
+        <meta name="description" content="Gérez votre parc automobile : ajout, modification, suivi des véhicules.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://votre-domaine.com/vehicules.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+     <link rel="icon" href="data:">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="top-brand">
+        <img src="./image/logo.jpg" class="imagelogo">
+        <h1>INNOFLEET</h1>
+        <div class="logout-btn" onclick="logout()">
+            <i class="fas fa-user"></i> <span id="user-display"></span> <i class="fas fa-sign-out-alt"></i>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li onclick="window.location.href='index.html'"><i class="fas fa-home"></i> Accueil</li>
+                <li onclick="window.location.href='vehicules.html'"><i class="fas fa-car"></i> Véhicules</li>
+                <li onclick="window.location.href='maintenance.html'"><i class="fas fa-wrench"></i> Maintenance</li>
+                <li onclick="window.location.href='mission.html'"><i class="fas fa-briefcase"></i> Missions</li>
+                <li onclick="window.location.href='trajets.html'"><i class="fas fa-map-marked-alt"></i> Trajets</li>
+                <li onclick="window.location.href='carburant.html'"><i class="fas fa-gas-pump"></i> Carburant</li>
+                <li onclick="window.location.href='rapports.html'" class="admin-only"><i class="fas fa-chart-line"></i> Rapports</li>
+                <li onclick="window.location.href='administration.html'" class="admin-only"><i class="fas fa-users-cog"></i> Administration</li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h2 style="font-weight: 300;">Rapports et indicateurs</h2>
+            <div class="panel">
+                <div class="panel-header">Consommation de carburant</div>
+                <div class="panel-body">
+                    <div class="chart-container">
+                        <canvas id="rapport-carburant"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">Utilisation des véhicules</div>
+                <div class="panel-body">
+                    <div class="chart-container">
+                        <canvas id="rapport-utilisation"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">Maintenance des véhicules</div>
+                <div class="panel-body">
+                    <div class="chart-container">
+                        <canvas id="rapport-maintenance"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/script.js" type="module"></script>
+    <script src="js/rapports.js" type="module"></script>
+</body>
+</html> 

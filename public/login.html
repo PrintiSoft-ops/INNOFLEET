@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion – INNOFLEET</title>
+        <meta name="description" content="Gérez votre parc automobile : ajout, modification, suivi des véhicules.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://votre-domaine.com/vehicules.html">
+    <meta name="description" content="Connectez-vous à votre espace de gestion de flotte automobile INNOFLEET.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="login-page">
+        <div class="login-box">
+            <h2 id="policeinnofleet">Innofleet</h2>
+            <p>Gestion de Parc Automobile</p>
+            <input type="text" id="username" placeholder="Nom d'utilisateur" value="admin">
+            <input type="password" id="password" placeholder="Mot de passe" value="admin">
+            <button class="btn-login" onclick="login()">Se connecter</button>
+            <div id="login-error" class="error-message"></div>
+            <div style="margin-top: 15px; font-size: 0.8rem; color: #6c757d;">admin/admin • user/user</div>
+        </div>
+    </div>
+    <script src="js/script.js" type="module"></script>
+</body>
+</html>

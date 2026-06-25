@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://votre-domaine.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://votre-domaine.com/vehicules.html</loc></url>
+  <url><loc>https://votre-domaine.com/maintenance.html</loc></url>
+  <url><loc>https://votre-domaine.com/mission.html</loc></url>
+  <url><loc>https://votre-domaine.com/trajets.html</loc></url>
+  <url><loc>https://votre-domaine.com/carburant.html</loc></url>
+  <url><loc>https://votre-domaine.com/rapports.html</loc></url>
+  <url><loc>https://votre-domaine.com/administration.html</loc></url>
+</urlset>

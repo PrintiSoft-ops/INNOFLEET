@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>INNOFLEET – Gestion de flotte automobile</title>
+    <meta name="description" content="Gérez vos véhicules, missions, carburant et maintenances avec INNOFLEET. Solution complète de gestion de parc automobile.">
+    <meta name="keywords" content="gestion flotte, véhicules, missions, maintenance, carburant, rapports">
+    <meta name="author" content="INNOFLEET">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://votre-domaine.com/">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "INNOFLEET",
+      "description": "Gestion de flotte automobile",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web"
+    }
+    </script>
+</head>
+<body>
+    <header class="top-brand">
+        <img src="./image/logo.jpg" class="imagelogo" alt="INNOFLEET Logo">
+        <div class="logout-btn" onclick="logout()">
+            <i class="fas fa-user"></i> <span id="user-display"></span> <i class="fas fa-sign-out-alt"></i>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li onclick="window.location.href='index.html'"><i class="fas fa-home"></i> Accueil</li>
+                <li onclick="window.location.href='vehicules.html'"><i class="fas fa-car"></i> Véhicules</li>
+                <li onclick="window.location.href='maintenance.html'"><i class="fas fa-wrench"></i> Maintenance</li>
+                <li onclick="window.location.href='mission.html'"><i class="fas fa-briefcase"></i> Missions</li>
+                <li onclick="window.location.href='trajets.html'"><i class="fas fa-map-marked-alt"></i> Trajets</li>
+                <li onclick="window.location.href='carburant.html'"><i class="fas fa-gas-pump"></i> Carburant</li>
+                <li onclick="window.location.href='rapports.html'" class="admin-only"><i class="fas fa-chart-line"></i> Rapports</li>
+                <li onclick="window.location.href='administration.html'" class="admin-only"><i class="fas fa-users-cog"></i> Administration</li>
+            </ul>
+            <div class="sidebar-stats">
+                <h3><i class="fas fa-chart-bar"></i> 2026</h3>
+                <div class="stat-item green"><span>Assurances:</span> <span id="stats-assurance">525 000 FCFA</span></div>
+                <div class="stat-item blue"><span>Vignettes:</span> <span id="stats-vignette">580 000 FCFA</span></div>
+                <div class="stat-item red"><span>Carburant:</span> <span id="stats-carburant">14 200 FCFA</span></div>
+            </div>
+        </aside>
+
+        <main class="content">
+            <h2 style="font-weight: 300; margin-bottom: 5px;">Modules</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Cliquez sur une carte pour accéder</p>
+            <div class="modules-grid">
+                <div class="module-card bg-blue" onclick="window.location.href='vehicules.html'"><h3>Véhicules</h3><i class="fas fa-truck bg-icon"></i></div>
+                <div class="module-card bg-orange" onclick="window.location.href='maintenance.html'"><h3>Maintenance</h3><i class="fas fa-tools bg-icon"></i></div>
+                <div class="module-card bg-blue" onclick="window.location.href='mission.html'"><h3>Missions</h3><i class="fas fa-route bg-icon"></i></div>
+                <div class="module-card bg-orange" onclick="window.location.href='trajets.html'"><h3>Trajets</h3><i class="fas fa-map-marked-alt bg-icon"></i></div>
+                <div class="module-card bg-blue" onclick="window.location.href='carburant.html'"><h3>Carburant</h3><i class="fas fa-gas-pump bg-icon"></i></div>
+                <div class="module-card bg-orange" onclick="window.location.href='rapports.html'"><h3>Rapports</h3><i class="fas fa-chart-pie bg-icon"></i></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/script.js" type="module"></script>
+</body>
+</html>
